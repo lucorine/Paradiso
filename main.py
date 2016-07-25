@@ -2,7 +2,7 @@
 
 import webapp2
 #import jinja2
-#import os
+import os
 import json
 from google.appengine.api import urlfetch
 import urllib2
@@ -25,25 +25,26 @@ class MainHandler(webapp2.RequestHandler):
 
 class RandomHandler(webapp2.RequestHandler):
     def get(self):
-        data_source = urlfetch.fetch(self.movie_search())
-        results = json.loads(data_source.content)
-
-        genre = results['Genre']
-
-        self.response.write(genre)
-
-    def movie_search(self):
         #please find a way to make the random functional (adding leading zeros)
         #r creates a random imdb id from 0 to 2000000 which is entered into the
         #url for the api
         #movie_search returns the full url with the random id
-        r = randint(0,2000000)
-        full_url = "http://www.omdbapi.com/?i=tt" + str(r)
+        r = str(randint(0,2000000))
+        full_url = "http://www.omdbapi.com/?i=tt" + r.zfill(7)
 
-        return full_url
+        data_source = urlfetch.fetch(full_url)
+        results = json.loads(data_source.content)
 
+        if results['Type'] != 'movie':
+            self.redirect("/random")
+
+        self.response.write(results['Title'] + '<br>')
+        self.response.write(results['Year'] + '<br>')
+        if results['Plot'] != "N/A":
+            self.response.write(results['Plot'])
 
 
 app = webapp2.WSGIApplication([
-    ('/', RandomHandler)
+    ('/', MainHandler),
+    ('/random', RandomHandler)
 ], debug=True)
