@@ -44,6 +44,7 @@ class RandomHandler(webapp2.RequestHandler):
             self.response.write(results['Plot'])
 
 
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/random', RandomHandler)
