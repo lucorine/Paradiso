@@ -35,11 +35,11 @@ class RandomHandler(webapp2.RequestHandler):
         data_source = urlfetch.fetch(full_url)
         results = json.loads(data_source.content)
 
-        if results['Type'] != 'movie':
+        if not results['Type'] == 'movie' or results['Genre'] == 'Adult':
             self.redirect("/random")
 
-        self.response.write(results['Title'] + '<br>')
-        self.response.write(results['Year'] + '<br>')
+        self.response.write(results['Title'].title() + '<br>')
+        self.response.write(results['Year'] + ' - ' + results['Genre'] + '<br>')
         if results['Plot'] != "N/A":
             self.response.write(results['Plot'])
 
