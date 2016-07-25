@@ -7,8 +7,7 @@ import json
 from google.appengine.api import urlfetch
 import urllib2
 from random import randint
-# from 'file name' import 'class'
-# from 'api' import 'class'
+from rejectedid import rejectedID
 
 # jinja_environment = jinja2.Environment(
 #   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))# this little bit sets jinja's relative directory to match the directory name(dirname) of the current __file__, in this case, helloworld.py
@@ -16,8 +15,8 @@ from random import randint
 
 # this is to link to the html file
 # make sure to change 'search_template' to something relevant
-#search_template = jinja_env.get_template('search.html')
-#self.response.out.write(search_template.render())
+# search_template = jinja_env.get_template('search.html')
+# self.response.out.write(search_template.render())
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -25,21 +24,26 @@ class MainHandler(webapp2.RequestHandler):
 
 class RandomHandler(webapp2.RequestHandler):
     def get(self):
-        #please find a way to make the random functional (adding leading zeros)
-        #r creates a random imdb id from 0 to 2000000 which is entered into the
-        #url for the api
-        #movie_search returns the full url with the random id
-        r = str(randint(0,2000000))
-        full_url = "http://www.omdbapi.com/?i=tt" + r.zfill(7)
+
+        # r creates a random imdb id from 0 to 2000000 which is entered into the
+        # url for the api
+        # function returns the full url with the random id
+        randomInt = str(randint(0,2000000))
+        full_url = "http://www.omdbapi.com/?i=tt" + randomInt.zfill(7)
 
         data_source = urlfetch.fetch(full_url)
         results = json.loads(data_source.content)
 
-        if results['Type'] != 'movie':
+        # refreshes page if not a movie or and Adult movie
+        if not results['Type'] == 'movie' or results['Genre'] == 'Adult':
+            x = rejectedID(id=randomInt)
+            x.put()
+
             self.redirect("/random")
 
+        # prints movie information
         self.response.write(results['Title'] + '<br>')
-        self.response.write(results['Year'] + '<br>')
+        self.response.write(results['Year'] + ' - ' + results['Genre'] + '<br>')
         if results['Plot'] != "N/A":
             self.response.write(results['Plot'])
 
