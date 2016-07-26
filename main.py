@@ -253,7 +253,7 @@ class HorrorHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/about', AboutHandler),
-    # ('/random', RandomHandler),
+    #('/random', RandomHandler),
     ('/action', ActionHandler),
     ('/comedy', ComedyHandler),
     ('/drama', DramaHandler),
