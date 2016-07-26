@@ -46,7 +46,7 @@ class RandomHandler(webapp2.RequestHandler):
 
 class ActionHandler(webapp2.RequestHandler):
     def get(self):
-
+        template = jinja_env.get_template('GenrePage.html')
         #titles is a list of movie titles, years is a list of movie years, and
         #plots is a list of movie plots. The values are assigned in the for loop
 
@@ -62,9 +62,14 @@ class ActionHandler(webapp2.RequestHandler):
             years.append(movies['results'][rand_movie]['release_date'])
             plots.append(movies['results'][rand_movie]['overview'])
 
-        self.response.write(titles)
-        self.response.write(years)
-        self.response.write(plots)
+        variables = {
+            'titles': titles,
+            'years': years,
+            'plots': plots
+        }
+
+        self.response.write(template.render(variables))
+
 
     def fetch_movies(self, random_page):
         data_source = urlfetch.fetch(self.movie_search(random_page))
@@ -83,7 +88,7 @@ class ActionHandler(webapp2.RequestHandler):
 
 class ComedyHandler(webapp2.RequestHandler):
     def get(self):
-
+        template = jinja_env.get_template('GenrePage.html')
         #titles is a list of movie titles, years is a list of movie years, and
         #plots is a list of movie plots. The values are assigned in the for loop
 
@@ -99,9 +104,13 @@ class ComedyHandler(webapp2.RequestHandler):
             years.append(movies['results'][rand_movie]['release_date'])
             plots.append(movies['results'][rand_movie]['overview'])
 
-        self.response.write(titles)
-        self.response.write(years)
-        self.response.write(plots)
+        variables = {
+        'titles': titles,
+        'years': years,
+        'plots': plots
+        }
+
+        self.response.write(template.render(variables))
 
     def fetch_movies(self, random_page):
         data_source = urlfetch.fetch(self.movie_search(random_page))
@@ -121,7 +130,7 @@ class ComedyHandler(webapp2.RequestHandler):
 
 class DramaHandler(webapp2.RequestHandler):
     def get(self):
-
+        template = jinja_env.get_template('GenrePage.html')
         #titles is a list of movie titles, years is a list of movie years, and
         #plots is a list of movie plots. The values are assigned in the for loop
 
@@ -137,9 +146,13 @@ class DramaHandler(webapp2.RequestHandler):
             years.append(movies['results'][rand_movie]['release_date'])
             plots.append(movies['results'][rand_movie]['overview'])
 
-        self.response.write(titles)
-        self.response.write(years)
-        self.response.write(plots)
+        variables = {
+            'titles': titles,
+            'years': years,
+            'plots': plots
+        }
+
+        self.response.write(template.render(variables))
 
     def fetch_movies(self, random_page):
         data_source = urlfetch.fetch(self.movie_search(random_page))
@@ -159,7 +172,7 @@ class DramaHandler(webapp2.RequestHandler):
 
 class FamilyHandler(webapp2.RequestHandler):
     def get(self):
-
+        template = jinja_env.get_template('GenrePage.html')
         #titles is a list of movie titles, years is a list of movie years, and
         #plots is a list of movie plots. The values are assigned in the for loop
 
@@ -175,9 +188,13 @@ class FamilyHandler(webapp2.RequestHandler):
             years.append(movies['results'][rand_movie]['release_date'])
             plots.append(movies['results'][rand_movie]['overview'])
 
-        self.response.write(titles)
-        self.response.write(years)
-        self.response.write(plots)
+        variables = {
+            'titles': titles,
+            'years': years,
+            'plots': plots
+        }
+
+        self.response.write(template.render(variables))
 
     def fetch_movies(self, random_page):
         data_source = urlfetch.fetch(self.movie_search(random_page))
