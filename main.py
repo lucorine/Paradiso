@@ -38,6 +38,8 @@ class RandomHandler(webapp2.RequestHandler):
 
         # prints movie information
         indexNumber = randint(1,19)
+        randomPageTemplate = jinja_env.get_template('RandomPage.html')
+        self.response.out.write(randomPageTemplate.render())
         self.response.write(movies['results'][indexNumber]['title'] + '<br>')
         self.response.write('Release Date: ' + movies['results'][indexNumber]['release_date'] + '<br>')
         self.response.write('Popularity: ' + str(movies['results'][indexNumber]['popularity']) + '<br>')
