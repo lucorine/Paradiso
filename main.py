@@ -22,14 +22,14 @@ from data_type import Movie
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
-        for i in range(1,500):
+        for i in range(18624,19000):
             r = str(i)
             full_url = "http://www.omdbapi.com/?i=tt" + r.zfill(7)
             data_source = urlfetch.fetch(full_url)
             results = json.loads(data_source.content)
             if(results['Type'] == 'movie'):
-                movie = Movie(title= results['Title'], genre= results['Genre'], imdbid= r.zfill(7))
-                movie.put()
+                    movie = Movie(title= results['Title'], genre= results['Genre'], imdbid= r.zfill(7))
+                    movie.put()
 
 # class RandomHandler(webapp2.RequestHandler):
 #     def get(self):
