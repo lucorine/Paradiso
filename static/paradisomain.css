@@ -31,16 +31,13 @@ container when the user clicks on the dropdown button) */
 }
 
 body {
-<<<<<<< HEAD
-      height: 15em;
-=======
       height: 25em;
->>>>>>> 9cf73a596d1c14e84fcc5823c2aeafac423f62b4
       position: absolute;
       top: 50%;
       left: 50%;
       margin-right: -50%;
       transform: translate(-50%, -50%);
+/*Background was added*/
       background-image: url("watercolor.jpg");
       background-repeat: no-repeat;
       background-attachment: fixed;
