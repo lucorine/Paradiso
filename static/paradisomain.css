@@ -33,7 +33,7 @@ container when the user clicks on the dropdown button) */
 .show {display:block;}
 
 body {
-      height: 10em;
+      height: 15em;
       position: absolute;
       top: 50%;
       left: 50%;
