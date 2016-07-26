@@ -152,7 +152,6 @@ class DramaHandler(webapp2.RequestHandler):
         self.response.write(years)
         self.response.write(plots)
 
-
     def fetch_movies(self):
         data_source = urlfetch.fetch(self.movie_search())
         results = json.loads(data_source.content)
