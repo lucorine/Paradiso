@@ -23,6 +23,11 @@ class MainHandler(webapp2.RequestHandler):
         mainPageTemplate = jinja_env.get_template('paradisomain.html')
         self.response.out.write(mainPageTemplate.render())
 
+class AboutHandler(webapp2.RequestHandler):
+    def get(self):
+        mainPageTemplate = jinja_env.get_template('AboutPage.html')
+        self.response.out.write(mainPageTemplate.render())
+
 class RandomHandler(webapp2.RequestHandler):
     def get(self):
 
@@ -36,10 +41,7 @@ class RandomHandler(webapp2.RequestHandler):
         results = json.loads(data_source.content)
 
         # refreshes page if not a movie or and Adult movie
-        if not results['Type'] == 'movie' or results['Genre'] == 'Adult':
-            x = rejectedID(id=randomInt)
-            x.put()
-
+        if not results['Type'] == 'movie' or results['Genre'] == 'Adult': #or if hasattr(results,'Error'):
             self.redirect("/random")
 
         #movieQuery = Movie.query()
@@ -54,5 +56,6 @@ class RandomHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
+    ('/about', AboutHandler),
     ('/random', RandomHandler)
 ], debug=True)
