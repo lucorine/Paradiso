@@ -1,1 +1,39 @@
-hello
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Paradiso</title>
+
+    <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Fjalla+One">
+    <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Abel">
+
+    <script src= "static/paradisomain.js"></script>
+    <link rel="stylesheet" href="static/paradisomain.css"/>
+
+  </head>
+  <body>
+    <div align= "center">
+
+      <p class= "myFontClass"> PARADISO</p>
+<!-- Hey still need to link these Hypertext Reference!! -->
+      <div>
+        <a href="/about" class="About" style="text-decoration: none"title="About">About</a> |
+
+<!-- Drop down -->
+        <div class="dropdown">
+        <a onclick="myFunction()" class="dropbtn">Recommendation by Genre</a> |
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#Comedy">Comedy</a>
+            <a href="#Drama">Drama</a>
+            <a href="#Family">Family</a>
+            <a href="#Horror">Horror</a>
+            <a href="#Action">Action</a>
+          </div>
+        </div>
+
+        <a href="/random" class="Random" style="text-decoration: none"title="Random">Random</a>
+      </div>
+    </div>
+  </body>
+</html>
