@@ -41,7 +41,7 @@ class RandomHandler(webapp2.RequestHandler):
         results = json.loads(data_source.content)
 
         # refreshes page if not a movie or and Adult movie
-        if not results['Type'] == 'movie' or results['Genre'] == 'Adult' or if hasattr(results,'Error'):
+        if not results['Type'] == 'movie' or results['Genre'] == 'Adult': #or if hasattr(results,'Error'):
             self.redirect("/random")
 
         #movieQuery = Movie.query()
