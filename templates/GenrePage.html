@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Search by Genre</title>
     <link rel="stylesheet" href="static/generalparadiso.css"/>
+    <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Abel">
+
   </head>
   <body>
-Corine sucks
-  </body>
+      <div align=left>
+        {% for i in range(0,5) %}
+          <p>{{titles[i]}}</p>
+          <p>{{years[i]}}</p>
+          <p>{{plots[i]}}</p>
+        {% endfor %}
+      </div>
 </html>
