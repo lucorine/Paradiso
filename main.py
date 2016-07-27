@@ -89,6 +89,7 @@ class GenreHandler(webapp2.RequestHandler):
         titles = []
         years = []
         plots = []
+        ratings = []
 
         for i in range(0,5):
             rand_page = randint(0, 101)
@@ -97,11 +98,13 @@ class GenreHandler(webapp2.RequestHandler):
             titles.append(movies['results'][rand_movie]['title'])
             years.append(movies['results'][rand_movie]['release_date'])
             plots.append(movies['results'][rand_movie]['overview'])
+            ratings.append(movies['results'][rand_movie]['vote_average'])
 
         variables = {
             'titles': titles,
             'years': years,
             'plots': plots,
+            'ratings': ratings,
             'specific_genre': self.genre
         }
 
@@ -114,7 +117,6 @@ class GenreHandler(webapp2.RequestHandler):
 
     def movie_search(self, random_page):
         base_url = "https://api.themoviedb.org/3/discover/movie?with_genres="
-        # search_id = self.fetch_genre() - This could be used to use just one handler for all genres
         searchid = str(self.search_id)
         page = '&page='+str(random_page)
         final_url = "&api_key=7f2e8836857048a3c77885647f9c0f47"
