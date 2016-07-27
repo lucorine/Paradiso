@@ -25,11 +25,10 @@ class AboutHandler(webapp2.RequestHandler):
 
 class RelatedHandler(webapp2.RequestHandler):
     def get(self):
-        similarPageTemplate = jinja_env.get_template('Similar.html')
+        similarPageTemplate = jinja_env.get_template('RelatedMovies.html')
         self.response.out.write(similarPageTemplate.render())
 
-        user_query = 'up'
-        # self.request.get('user_query')
+        user_query = self.request.get('search')
         if len(user_query) > 0:
             self.give_results(user_query)
 
