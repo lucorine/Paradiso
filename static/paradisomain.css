@@ -1,3 +1,16 @@
+.TextSize {
+    font-size: 24px;
+}
+.dropbtn:hover {
+    color: white;
+}
+.About:hover {
+  color:white;
+}
+.Random:hover {
+  color:white;
+}
+
 /* Dropdown Button */
 .dropbtn {
     color: black;
@@ -51,7 +64,7 @@ body {
       margin: 2px;
 }
 .dropbtn, .Random, .About, .dropdown-content {
-      font-size: 150%;
+      font-size: 24px;
       font-weight: bold;
       font-family: 'Abel', sans-serif;
 }
