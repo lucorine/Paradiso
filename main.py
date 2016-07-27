@@ -80,6 +80,30 @@ class DramaHandler(webapp2.RequestHandler):
         variables = drama.get()
         self.response.write(variables)
 
+class CrimeHandler(webapp2.RequestHandler):
+    def get(self):
+        crime = GenreHandler(80, 'Crime')
+        variables = crime.get()
+        self.response.write(variables)
+
+class AdventureHandler(webapp2.RequestHandler):
+    def get(self):
+        adventure = GenreHandler(12, 'Adventure')
+        variables = adventure.get()
+        self.response.write(variables)
+
+class AnimationHandler(webapp2.RequestHandler):
+    def get(self):
+        animation = GenreHandler(16, 'Animation')
+        variables = animation.get()
+        self.response.write(variables)
+
+class DocumentaryHandler(webapp2.RequestHandler):
+    def get(self):
+        documentary = GenreHandler(99, 'Documentary')
+        variables = documentary.get()
+        self.response.write(variables)
+
 class GenreHandler(webapp2.RequestHandler):
     def __init__(self, search_id, genre):
         self.search_id = search_id
@@ -138,5 +162,9 @@ app = webapp2.WSGIApplication([
     ('/comedy', ComedyHandler),
     ('/drama', DramaHandler),
     ('/family', FamilyHandler),
-    ('/horror', HorrorHandler)
+    ('/horror', HorrorHandler),
+    ('/crime', CrimeHandler),
+    ('/adventure', AdventureHandler),
+    ('/animation', AnimationHandler),
+    ('/documentary', DocumentaryHandler)
 ], debug=True)
