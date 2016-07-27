@@ -5,3 +5,6 @@ body{
   background-position: center;
   background-size: cover;
 }
+p{
+  font-family: 'Fjalla One', sans-serif;
+}
