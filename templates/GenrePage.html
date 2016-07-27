@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search by Genre</title>
+    <link rel="stylesheet" href="static/generalparadiso.css"/>
+  </head>
+  <body>
+      <div align=left>
+        {% for i in range(0,5) %}
+          <p>{{titles[i]}}</p>
+          <p>{{years[i]}}</p>
+          <p>{{plots[i]}}</p>
+        {% endfor %}
+      </div>
+  </body>
+</html>
