@@ -14,12 +14,13 @@
     display: none;
     position: absolute;
     background-color: #f9f9f9;
+    opacity: .6;
     min-width: 160px;
 }
 /* Links inside the dropdown */
 .dropdown-content a {
     color: black;
-    padding: 12px 86px;
+    padding: 12px 62px;
     text-decoration: none;
     display: block;
     position: center;
