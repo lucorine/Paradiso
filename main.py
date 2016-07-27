@@ -39,12 +39,16 @@ class RandomHandler(webapp2.RequestHandler):
         # prints movie information
         indexNumber = randint(1,19)
         randomPageTemplate = jinja_env.get_template('RandomPage.html')
-        self.response.out.write(randomPageTemplate.render())
-        self.response.write(movies['results'][indexNumber]['title'] + '<br><br>')
-        self.response.write('Release Date: ' + movies['results'][indexNumber]['release_date'] + '<br>')
-        self.response.write('Popularity: ' + str(movies['results'][indexNumber]['popularity']) + '<br>')
-        self.response.write('Rating: ' + str(movies['results'][indexNumber]['vote_average']) + '<br><br>')
-        self.response.write(movies['results'][indexNumber]['overview'] + '<br>')
+
+        variables = {
+        'title': movies['results'][indexNumber]['title'],
+        'dates': movies['results'][indexNumber]['release_date'],
+        'popularity': str(movies['results'][indexNumber]['popularity']),
+        'rating': str(movies['results'][indexNumber]['vote_average']),
+        'plot': movies['results'][indexNumber]['overview']
+        }
+
+        self.response.out.write(randomPageTemplate.render(variables))
 
 class ActionHandler(webapp2.RequestHandler):
     def get(self):
@@ -90,6 +94,7 @@ class GenreHandler(webapp2.RequestHandler):
         years = []
         plots = []
         ratings = []
+        popularity = []
 
         for i in range(0,5):
             rand_page = randint(0, 101)
@@ -99,13 +104,15 @@ class GenreHandler(webapp2.RequestHandler):
             years.append(movies['results'][rand_movie]['release_date'])
             plots.append(movies['results'][rand_movie]['overview'])
             ratings.append(movies['results'][rand_movie]['vote_average'])
+            popularity.append(movies['results'][rand_movie]['popularity'])
 
         variables = {
             'titles': titles,
             'years': years,
             'plots': plots,
             'ratings': ratings,
-            'specific_genre': self.genre
+            'specific_genre': self.genre,
+            'popularity': popularity
         }
 
         return template.render(variables)
