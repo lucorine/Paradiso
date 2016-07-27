@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Search by Genre</title>
+    <title>Paradiso - {{specific_genre}}</title>
     <link rel="stylesheet" href="static/generalparadiso.css"/>
     <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Abel">
 
   </head>
   <body>
+      <h1>{{specific_genre}}
       <div align=left class = "bodyTextBox">
         {% for i in range(0,5) %}
           <p>{{titles[i]}}</p>
           <p>{{years[i]}}</p>
+          <p>{{ratings[i]}}</p>
           <p>{{plots[i]}}</p>
         {% endfor %}
       </div>
