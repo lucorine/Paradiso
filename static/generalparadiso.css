@@ -23,8 +23,7 @@ body{
 }
 
 div.bodyTextBox {
-  margin: 100px;
-  margin-top: 40px;
+  margin: 40px 100px 40px 100px;
   background-color: #ffffff;
   opacity: .6;
   filter: alpha(opacity=60);
@@ -48,4 +47,9 @@ div.bodyTextBox, p {
   background-color:white;
   border: 2px solid white;
   font-family: 'Abel', sans-serif;
+  font-size: 110%;
+}
+
+.movieTitle {
+  font-size: 150%;
 }
