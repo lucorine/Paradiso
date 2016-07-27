@@ -104,6 +104,54 @@ class DocumentaryHandler(webapp2.RequestHandler):
         variables = documentary.get()
         self.response.write(variables)
 
+class FantasyHandler(webapp2.RequestHandler):
+    def get(self):
+        fantasy = GenreHandler(14, 'Fantasy')
+        variables = fantasy.get()
+        self.response.write(variables)
+
+class ForeignHandler(webapp2.RequestHandler):
+    def get(self):
+        foreign = GenreHandler(10769, 'Foreign')
+        variables = foreign.get()
+        self.response.write(variables)
+
+class HistoryHandler(webapp2.RequestHandler):
+    def get(self):
+        history = GenreHandler(36, 'History')
+        variables = history.get()
+        self.response.write(variables)
+
+class MusicHandler(webapp2.RequestHandler):
+    def get(self):
+        music = GenreHandler(10402, 'Music')
+        variables = music.get()
+        self.response.write(variables)
+
+class MysteryHandler(webapp2.RequestHandler):
+    def get(self):
+        mystery = GenreHandler(9648, 'Mystery')
+        variables = mystery.get()
+        self.response.write(variables)
+
+class RomanceHandler(webapp2.RequestHandler):
+    def get(self):
+        romance = GenreHandler(10749, 'Romance')
+        variables = romance.get()
+        self.response.write(variables)
+
+class ScifiHandler(webapp2.RequestHandler):
+    def get(self):
+        scifi = GenreHandler(878, 'Sci-Fi')
+        variables = scifi.get()
+        self.response.write(variables)
+
+class ThrillerHandler(webapp2.RequestHandler):
+    def get(self):
+        thriller = GenreHandler(53, 'Thriller')
+        variables = thriller.get()
+        self.response.write(variables)
+
 class GenreHandler(webapp2.RequestHandler):
     def __init__(self, search_id, genre):
         self.search_id = search_id
@@ -166,5 +214,13 @@ app = webapp2.WSGIApplication([
     ('/crime', CrimeHandler),
     ('/adventure', AdventureHandler),
     ('/animation', AnimationHandler),
-    ('/documentary', DocumentaryHandler)
+    ('/documentary', DocumentaryHandler),
+    ('/fantasy', FantasyHandler),
+    ('/foreign', ForeignHandler),
+    ('/history', HistoryHandler),
+    ('/music', MusicHandler),
+    ('/mystery', MysteryHandler),
+    ('/romance', RomanceHandler),
+    ('/scifi', ScifiHandler),
+    ('/thriller', ThrillerHandler)
 ], debug=True)
