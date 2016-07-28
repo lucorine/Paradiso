@@ -26,8 +26,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    opacity: .6;
+    background-color: rgba(255, 255, 255, 0.6);
     min-width: 160px;
 }
 /* Links inside the dropdown */
@@ -45,7 +44,7 @@ container when the user clicks on the dropdown button) */
 }
 
 .dropdown-content a:hover {
-    background-color:red;
+    background-color: rgba(128, 210, 237, 0.7);;
 }
 
 body {

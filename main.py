@@ -85,6 +85,8 @@ class RandomHandler(webapp2.RequestHandler):
         apiKey = '&api_key=7f2e8836857048a3c77885647f9c0f47'
         full_url = firstUrlPart + page + pageNumber + apiKey
 
+        image_url = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2'
+
         data_source = urlfetch.fetch(full_url)
         movies = json.loads(data_source.content)
 
@@ -97,110 +99,111 @@ class RandomHandler(webapp2.RequestHandler):
         'dates': movies['results'][indexNumber]['release_date'],
         'popularity': str(movies['results'][indexNumber]['popularity']),
         'rating': str(movies['results'][indexNumber]['vote_average']),
-        'plot': movies['results'][indexNumber]['overview']
+        'plot': movies['results'][indexNumber]['overview'],
+        'poster': image_url + movies['results'][indexNumber]['poster_path']
         }
 
         self.response.out.write(randomPageTemplate.render(variables))
 
 class ActionHandler(webapp2.RequestHandler):
     def get(self):
-        action = GenreHandler(28, 'Action')
+        action = GenreHandler(28, 'ACTION')
         variables = action.get()
         self.response.write(variables)
 
 class ComedyHandler(webapp2.RequestHandler):
     def get(self):
-        comedy = GenreHandler(35, 'Comedy')
+        comedy = GenreHandler(35, 'COMEDY')
         variables = comedy.get()
         self.response.write(variables)
 
 class HorrorHandler(webapp2.RequestHandler):
     def get(self):
-        horror = GenreHandler(27, 'Horror')
+        horror = GenreHandler(27, 'HORROR')
         variables = horror.get()
         self.response.write(variables)
 
 class FamilyHandler(webapp2.RequestHandler):
     def get(self):
-        family = GenreHandler(10751, 'Family')
+        family = GenreHandler(10751, 'FAMILY')
         variables = family.get()
         self.response.write(variables)
 
 class DramaHandler(webapp2.RequestHandler):
     def get(self):
-        drama = GenreHandler(18, 'Drama')
+        drama = GenreHandler(18, 'DRAMA')
         variables = drama.get()
         self.response.write(variables)
 
 class CrimeHandler(webapp2.RequestHandler):
     def get(self):
-        crime = GenreHandler(80, 'Crime')
+        crime = GenreHandler(80, 'CRIME')
         variables = crime.get()
         self.response.write(variables)
 
 class AdventureHandler(webapp2.RequestHandler):
     def get(self):
-        adventure = GenreHandler(12, 'Adventure')
+        adventure = GenreHandler(12, 'ADVENTURE')
         variables = adventure.get()
         self.response.write(variables)
 
 class AnimationHandler(webapp2.RequestHandler):
     def get(self):
-        animation = GenreHandler(16, 'Animation')
+        animation = GenreHandler(16, 'ANIMATION')
         variables = animation.get()
         self.response.write(variables)
 
 class DocumentaryHandler(webapp2.RequestHandler):
     def get(self):
-        documentary = GenreHandler(99, 'Documentary')
+        documentary = GenreHandler(99, 'DOCUMENTARY')
         variables = documentary.get()
         self.response.write(variables)
 
 class FantasyHandler(webapp2.RequestHandler):
     def get(self):
-        fantasy = GenreHandler(14, 'Fantasy')
+        fantasy = GenreHandler(14, 'FANTASY')
         variables = fantasy.get()
         self.response.write(variables)
 
 class ForeignHandler(webapp2.RequestHandler):
     def get(self):
-        foreign = GenreHandler(10769, 'Foreign')
+        foreign = GenreHandler(10769, 'FOREIGN')
         variables = foreign.get()
         self.response.write(variables)
 
 class HistoryHandler(webapp2.RequestHandler):
     def get(self):
-        history = GenreHandler(36, 'History')
+        history = GenreHandler(36, 'HISTORY')
         variables = history.get()
         self.response.write(variables)
 
 class MusicHandler(webapp2.RequestHandler):
     def get(self):
-        music = GenreHandler(10402, 'Music')
+        music = GenreHandler(10402, 'MUSIC')
         variables = music.get()
         self.response.write(variables)
 
 class MysteryHandler(webapp2.RequestHandler):
     def get(self):
-        mystery = GenreHandler(9648, 'Mystery')
+        mystery = GenreHandler(9648, 'MYSTERY')
         variables = mystery.get()
         self.response.write(variables)
 
 class RomanceHandler(webapp2.RequestHandler):
     def get(self):
-        romance = GenreHandler(10749, 'Romance')
+        romance = GenreHandler(10749, 'ROMANCE')
         variables = romance.get()
         self.response.write(variables)
 
 class ScifiHandler(webapp2.RequestHandler):
     def get(self):
-        scifi = GenreHandler(878, 'Sci-Fi')
+        scifi = GenreHandler(878, 'SCI-FI')
         variables = scifi.get()
         self.response.write(variables)
 
 class ThrillerHandler(webapp2.RequestHandler):
     def get(self):
-        thriller = GenreHandler(53, 'Thriller')
+        thriller = GenreHandler(53, 'THRILLER')
         variables = thriller.get()
         self.response.write(variables)
 
@@ -214,11 +217,14 @@ class GenreHandler(webapp2.RequestHandler):
         #plots is a list of movie plots. The values are assigned in the for loop
         template = jinja_env.get_template('GenrePage.html')
 
+        image_url = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2'
+
         titles = []
         years = []
         plots = []
         ratings = []
         popularity = []
+        poster = []
 
         for i in range(0,5):
             rand_page = randint(0, 101)
@@ -229,6 +235,7 @@ class GenreHandler(webapp2.RequestHandler):
             plots.append(movies['results'][rand_movie]['overview'])
             ratings.append(movies['results'][rand_movie]['vote_average'])
             popularity.append(movies['results'][rand_movie]['popularity'])
+            poster.append(image_url + movies['results'][rand_movie]['poster_path'])
 
         variables = {
             'titles': titles,
@@ -236,7 +243,8 @@ class GenreHandler(webapp2.RequestHandler):
             'plots': plots,
             'ratings': ratings,
             'specific_genre': self.genre,
-            'popularity': popularity
+            'popularity': popularity,
+            'poster2': poster
         }
 
         return template.render(variables)
