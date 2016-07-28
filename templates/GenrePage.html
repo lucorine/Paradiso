@@ -20,13 +20,15 @@
       <h1 align=center class = "heading">{{specific_genre}}</h1>
       <div align=left class = "bodyTextBox">
         {% for i in range(0,5) %}
-          <p class = "movieTitle">{{titles[i]}}</p>
-          <p>Release Date: {{years[i]}}
-            <br>Popularity: {{popularity[i]}}
-            <br>Rating: {{ratings[i]}}
-          </p>
-          <p>{{plots[i]}}</p>
-          <p>///////////////</p>
+          <div class = "floatingBox">
+            <img class = "moviePoster" src={{poster2[i]}} alt="Movie Poster" width = "250px">
+            <p class = "movieTitle">{{titles[i]}}</p>
+            <p>Release Date: {{years[i]}}
+              <br>Popularity: {{popularity[i]}}
+              <br>Rating: {{ratings[i]}}
+            </p>
+            <p>{{plots[i]}}</p>
+          </div>
         {% endfor %}
       </div>
       <a href='/' + {{specific_genre}}></a>

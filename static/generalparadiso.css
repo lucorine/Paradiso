@@ -26,20 +26,22 @@ body {
   margin: 20px 20px 20px 20px;
 }
 
-div.bodyTextBox {
+div .bodyTextBox {
   margin: 40px 100px 40px 100px;
-  background-color: #ffffff;
-  opacity: .6;
-  filter: alpha(opacity=60);
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 5px 10px;
+  text-align: justify;
+  color: #000000;
+  font-size: 130%;
+  font-weight: bold;
+  font-family: 'Abel', sans-serif;
+  opacity: 1;
 }
 
-div.bodyTextBox, p {
-    padding: 5px 10px;
-    text-align: justify;
-    color: #000000;
-    font-size: 110%;
-    font-weight: bold;
-    font-family: 'Abel', sans-serif;
+div .bodyTextBox::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .RefreshButton{
@@ -56,6 +58,8 @@ div.bodyTextBox, p {
 
 .movieTitle {
   font-size: 150%;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
 div.absolute {
@@ -69,4 +73,29 @@ div.absolute {
     padding: 5px;
     font-size: 150%;
     font-family: 'Fjalla One', sans-serif;
+}
+
+.moviePoster {
+  float: left;
+  clear: left;
+  padding: 5px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-left: 0px
+}
+
+div.floatingBox {
+  display: inline-block;
+}
+
+.aboutUs {
+  float: left;
+  padding: 5px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-left: 0px
+}
+
+#aboutText {
+  margin-top: 1px;
 }

@@ -33,6 +33,8 @@ class RandomHandler(webapp2.RequestHandler):
         apiKey = '&api_key=7f2e8836857048a3c77885647f9c0f47'
         full_url = firstUrlPart + page + pageNumber + apiKey
 
+        image_url = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2'
+
         data_source = urlfetch.fetch(full_url)
         movies = json.loads(data_source.content)
 
@@ -45,7 +47,8 @@ class RandomHandler(webapp2.RequestHandler):
         'dates': movies['results'][indexNumber]['release_date'],
         'popularity': str(movies['results'][indexNumber]['popularity']),
         'rating': str(movies['results'][indexNumber]['vote_average']),
-        'plot': movies['results'][indexNumber]['overview']
+        'plot': movies['results'][indexNumber]['overview'],
+        'poster': image_url + movies['results'][indexNumber]['poster_path']
         }
 
         self.response.out.write(randomPageTemplate.render(variables))
@@ -162,11 +165,14 @@ class GenreHandler(webapp2.RequestHandler):
         #plots is a list of movie plots. The values are assigned in the for loop
         template = jinja_env.get_template('GenrePage.html')
 
+        image_url = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2'
+
         titles = []
         years = []
         plots = []
         ratings = []
         popularity = []
+        poster = []
 
         for i in range(0,5):
             rand_page = randint(0, 101)
@@ -177,6 +183,7 @@ class GenreHandler(webapp2.RequestHandler):
             plots.append(movies['results'][rand_movie]['overview'])
             ratings.append(movies['results'][rand_movie]['vote_average'])
             popularity.append(movies['results'][rand_movie]['popularity'])
+            poster.append(image_url + movies['results'][rand_movie]['poster_path'])
 
         variables = {
             'titles': titles,
@@ -184,7 +191,8 @@ class GenreHandler(webapp2.RequestHandler):
             'plots': plots,
             'ratings': ratings,
             'specific_genre': self.genre,
-            'popularity': popularity
+            'popularity': popularity,
+            'poster2': poster
         }
 
         return template.render(variables)
