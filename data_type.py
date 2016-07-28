@@ -1,6 +1,5 @@
 from google.appengine.ext import ndb
 
-class Movie(ndb.Model):
-  title = ndb.StringProperty(required=True)
-  genre = ndb.StringProperty(required=True)
-  imdbid = ndb.StringProperty(required=True)
+class User(ndb.Model):
+  username = ndb.StringProperty(required=True)
+  password = ndb.StringProperty(required=True)
