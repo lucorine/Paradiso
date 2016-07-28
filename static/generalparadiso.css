@@ -131,3 +131,8 @@ li a:hover {
 #paradisohome {
   font-family: 'Fjalla One', sans-serif;
 }
+
+.search {
+  width: 75%;
+  height: 5%;
+}
