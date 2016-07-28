@@ -57,6 +57,9 @@ class RelatedHandler(webapp2.RequestHandler):
         ratings = []
         popularity = []
 
+        userq = user_query.replace("%20", " ")
+        userq = userq.title()
+
         for i in range(0,5):
             titles.append(similar_movies['results'][i]['title'])
             years.append(similar_movies['results'][i]['release_date'])
@@ -69,7 +72,8 @@ class RelatedHandler(webapp2.RequestHandler):
         'years': years,
         'popularity': popularity,
         'ratings': ratings,
-        'plots': plots
+        'plots': plots,
+        'original_movie' : userq
         }
         similarResultsTemplate = jinja_env.get_template('SimilarResults.html')
         self.response.write(similarResultsTemplate.render(variables))
