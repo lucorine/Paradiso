@@ -233,17 +233,20 @@ class GenreHandler(webapp2.RequestHandler):
         ratings = []
         popularity = []
         poster = []
+        randmovies = []
+        randpages = []
 
         for i in range(0,5):
             rand_page = randint(0, 101)
-            movies = self.fetch_movies(rand_page)
             rand_movie = randint(0,19)
-            titles.append(movies['results'][rand_movie]['title'])
-            years.append(movies['results'][rand_movie]['release_date'])
-            plots.append(movies['results'][rand_movie]['overview'])
-            ratings.append(movies['results'][rand_movie]['vote_average'])
-            popularity.append(movies['results'][rand_movie]['popularity'])
-            poster.append(image_url + movies['results'][rand_movie]['poster_path'])
+            if(rand_page not in randpages) and (rand_movie not in randmovies):
+                movies = self.fetch_movies(rand_page)
+                titles.append(movies['results'][rand_movie]['title'])
+                years.append(movies['results'][rand_movie]['release_date'])
+                plots.append(movies['results'][rand_movie]['overview'])
+                ratings.append(movies['results'][rand_movie]['vote_average'])
+                popularity.append(movies['results'][rand_movie]['popularity'])
+                poster.append(image_url + movies['results'][rand_movie]['poster_path'])
 
         variables = {
             'titles': titles,
