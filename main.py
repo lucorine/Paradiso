@@ -30,6 +30,7 @@ class RelatedHandler(webapp2.RequestHandler):
         similarPageTemplate = jinja_env.get_template('RelatedMovies.html')
 
         user_query = self.request.get('user_query')
+        user_query.strip()
         user_query = user_query.replace(" ", "%20")
 
         if len(user_query) > 0:
