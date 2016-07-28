@@ -8,6 +8,7 @@ from google.appengine.api import urlfetch
 import urllib2
 from random import randint
 from datatype import Movie
+import logging
 
 jinja_environment = jinja2.Environment(
    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -26,11 +27,14 @@ class AboutHandler(webapp2.RequestHandler):
 class RelatedHandler(webapp2.RequestHandler):
     def get(self):
         similarPageTemplate = jinja_env.get_template('RelatedMovies.html')
-        self.response.out.write(similarPageTemplate.render())
 
         user_query = self.request.get('user_query')
+        user_query = user_query.replace(" ", "%20")
+
         if len(user_query) > 0:
             self.give_results(user_query)
+        else:
+            self.response.out.write(similarPageTemplate.render())
 
     def give_results(self, user_query):
 
