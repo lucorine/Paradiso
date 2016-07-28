@@ -23,6 +23,54 @@ class AboutHandler(webapp2.RequestHandler):
         mainPageTemplate = jinja_env.get_template('AboutPage.html')
         self.response.out.write(mainPageTemplate.render())
 
+class RelatedHandler(webapp2.RequestHandler):
+    def get(self):
+        similarPageTemplate = jinja_env.get_template('RelatedMovies.html')
+        self.response.out.write(similarPageTemplate.render())
+
+        user_query = self.request.get('user_query')
+        if len(user_query) > 0:
+            self.give_results(user_query)
+
+    def give_results(self, user_query):
+
+        firstUrlPart = 'https://api.themoviedb.org/3/search/movie?query='
+
+        apiKey = '&api_key=7f2e8836857048a3c77885647f9c0f47'
+        full_url = firstUrlPart + user_query + apiKey
+        data_source = urlfetch.fetch(full_url)
+        movies = json.loads(data_source.content)
+
+        search_id = movies['results'][0]['id']
+
+        id_url = 'https://api.themoviedb.org/3/movie/' + str(search_id) + '/similar?api_key=7f2e8836857048a3c77885647f9c0f47'
+        similar_results = urlfetch.fetch(id_url)
+        similar_movies = json.loads(similar_results.content)
+
+        titles = []
+        years = []
+        plots = []
+        ratings = []
+        popularity = []
+
+        for i in range(0,5):
+            titles.append(similar_movies['results'][i]['title'])
+            years.append(similar_movies['results'][i]['release_date'])
+            plots.append(similar_movies['results'][i]['overview'])
+            ratings.append(similar_movies['results'][i]['vote_average'])
+            popularity.append(similar_movies['results'][i]['popularity'])
+
+        variables = {
+        'titles': titles,
+        'years': years,
+        'popularity': popularity,
+        'ratings': ratings,
+        'plots': plots
+        }
+        similarResultsTemplate = jinja_env.get_template('SimilarResults.html')
+        self.response.write(similarResultsTemplate.render(variables))
+
+
 class RandomHandler(webapp2.RequestHandler):
     def get(self):
         # url for the api
@@ -230,5 +278,6 @@ app = webapp2.WSGIApplication([
     ('/mystery', MysteryHandler),
     ('/romance', RomanceHandler),
     ('/scifi', ScifiHandler),
-    ('/thriller', ThrillerHandler)
+    ('/thriller', ThrillerHandler),
+    ('/related', RelatedHandler)
 ], debug=True)
