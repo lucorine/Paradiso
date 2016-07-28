@@ -9,9 +9,7 @@ body {
 
   margin: 0px;
 }
-input[type=text]:focus{
-  outline-color:	#ff66cc;
-}
+
 .body{
   height: 40em;
   position: absolute;
@@ -136,5 +134,12 @@ li a:hover {
 
 .search {
   width: 75%;
-  height: 5%;
+  height: 7%;
+  font-family: 'Abel', sans-serif;
+  font-size: 130%;
+  text-align: center;
+}
+
+input[type=text]:focus{
+  outline-color:	#ff66cc;
 }
