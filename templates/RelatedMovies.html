@@ -3,13 +3,26 @@
     <title>Similar Movies</title>
     <link rel="stylesheet" type= "text/css" href="../static/RelatedMovies.css"/>
     <link rel="stylesheet" type= "text/css" href="../static/generalparadiso.css"/>
-
+    <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Fjalla+One">
+    <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Abel">
   </head>
   <body>
-    <form method="get" action="">
-      <input type="text" name="user_query" placeholder="Input movie title here..">
-      <button type="submit">Search</button>
+    <ul>
+      <li><a class="active" id = "paradisohome" href="/">PARADISO</a></li>
+      <li><a href="/about">ABOUT</a></li>
+      <li><a href="/random">RANDOM</a></li>
+      <li><a href="/related">RELATED</a></li>
+      <li><a href="/trending">TRENDING</a></li>
+    </ul>
+  <div class="body">
+    <h1 class = "heading">
+      FIND MOVIES SIMILAR TO:
+    </h1>
+    <form method="get" action="" align=center>
+      <input class="search" type="text" name="user_query" placeholder="Search Movie Title">
     </form>
-
+  </div>
   </body>
 </html>

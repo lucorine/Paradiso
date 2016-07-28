@@ -19,11 +19,11 @@
       <li><a href="/trending">TRENDING</a></li>
     </ul>
     <div class = "body">
-      <form method="get" action="">
-        <input type="text" name="user_query" placeholder="Search..">
-        <input type="submit">
-      </form>
     <h1 class = "heading" align=center>SIMILAR TO: {{original_movie}}</h1>
+    <form align=center method="get" action="">
+      <input type="text" name="user_query" placeholder="Search">
+    </form>
+
     <div align=left class = "bodyTextBox">
       {% for i in range(0,5) %}
         <div class = "floatingBox">
@@ -37,5 +37,6 @@
         </div>
       {% endfor %}
     </div>
+  </div>
   </body>
 </html>
