@@ -82,6 +82,45 @@ class RelatedHandler(webapp2.RequestHandler):
         similarResultsTemplate = jinja_env.get_template('SimilarResults.html')
         self.response.write(similarResultsTemplate.render(variables))
 
+class TrendingHandler(webapp2.RequestHandler):
+    def get(self):
+        trendingPageTemplate = jinja_env.get_template('TrendingPage.html')
+
+        firstUrlPart = 'https://api.themoviedb.org/3/movie/popular?'
+        page = 'page=1'
+        apiKey = '&api_key=7f2e8836857048a3c77885647f9c0f47'
+        full_url = firstUrlPart + page + apiKey
+
+        image_url = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2'
+
+        trending_data = urlfetch.fetch(full_url)
+        trending_list = json.loads(trending_data.content)
+
+        titles = []
+        years = []
+        plots = []
+        ratings = []
+        popularity = []
+        posters = []
+
+        for i in range(0,5):
+            titles.append(trending_list['results'][i]['title'])
+            years.append(trending_list['results'][i]['release_date'])
+            plots.append(trending_list['results'][i]['overview'])
+            ratings.append(trending_list['results'][i]['vote_average'])
+            popularity.append(trending_list['results'][i]['popularity'])
+            posters.append(image_url + trending_list['results'][i]['poster_path'])
+
+        variables = {
+        'titles': titles,
+        'years': years,
+        'popularity': popularity,
+        'ratings': ratings,
+        'plots': plots,
+        'posters': posters
+        }
+
+        self.response.out.write(trendingPageTemplate.render(variables))
 
 class RandomHandler(webapp2.RequestHandler):
     def get(self):
@@ -294,5 +333,6 @@ app = webapp2.WSGIApplication([
     ('/romance', RomanceHandler),
     ('/scifi', ScifiHandler),
     ('/thriller', ThrillerHandler),
-    ('/related', RelatedHandler)
+    ('/related', RelatedHandler),
+    ('/trending', TrendingHandler)
 ], debug=True)

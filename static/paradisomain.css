@@ -10,7 +10,12 @@
 .Random:hover {
   color:white;
 }
-
+.Related:hover {
+  color:white;
+}
+.Trending:hover {
+  color:white;
+}
 /* Dropdown Button */
 .dropbtn {
     color: black;
@@ -63,11 +68,11 @@ body {
 }
 .heading {
       color: white;
-      font-size: 800%;
+      font-size: 900%;
       font-family: 'Fjalla One', sans-serif;
       margin: 2px;
 }
-.dropbtn, .Random, .About, .dropdown-content {
+.dropbtn, .Random, .Related, .Trending, .About, .dropdown-content {
       font-size: 24px;
       font-weight: bold;
       font-family: 'Abel', sans-serif;
