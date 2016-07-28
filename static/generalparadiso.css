@@ -66,8 +66,7 @@ div.absolute {
     position: relative;
     top: auto;
     width: 100%;
-    background-color: white;
-    opacity: .6;
+    background-color: rgba(255, 255, 255, 0.6);
     margin: 0px;
     border: 0px;
     padding: 5px;
