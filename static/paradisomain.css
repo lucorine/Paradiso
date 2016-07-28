@@ -31,15 +31,17 @@
 .dropdown-content {
     display: none;
     position: absolute;
+    margin-left: -37%;
+    margin-right: 25%;
     background-color: rgba(255, 255, 255, 0.6);
-    min-width: 160px;
+    min-width: 150%;
 }
 /* Links inside the dropdown */
 .dropdown-content a {
     color: black;
     padding: 12px 62px;
     text-decoration: none;
-    display: block;
+    display: inline-block;
     position: center;
 }
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content
@@ -49,7 +51,7 @@ container when the user clicks on the dropdown button) */
 }
 
 .dropdown-content a:hover {
-    background-color: rgba(245, 186, 231, 0.4);;
+    background-color: rgba(245, 186, 231, 0.4);
 }
 
 body {
