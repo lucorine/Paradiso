@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Random </title>
+    <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Fjalla+One">
+    <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="static/generalparadiso.css"/>
+    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div class = "body">
+      <form method="get" action="">
+        <textarea name="user_query" cols=60 rows=5/></textarea>
+        <input type="submit">
+      </form>
+    {% for i in range(0,5) %}
+      <p class = "movieTitle">{{titles[i]}}</p>
+      <p>Release Date: {{years[i]}}
+        <br>Popularity: {{popularity[i]}}
+        <br>Rating: {{ratings[i]}}
+      </p>
+      <p>{{plots[i]}}</p>
+      <p>///////////////</p>
+    {% endfor %}
+  </body>
+</html>
