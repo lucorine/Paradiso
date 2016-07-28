@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Paradiso - Trending</title>
+    <link rel="stylesheet" href="static/generalparadiso.css"/>
+    <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Fjalla+One">
+    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+
+
+  </head>
+  <body>
+    <div class = "absolute">
+      <a href="/" style="text-decoration: none">Paradiso</a>
+    </div>
+    <div class = "body">
+      <h1 align=center class = "heading">Trending</h1>
+      <div align=left class = "bodyTextBox">
+        {% for i in range(0,5) %}
+          <div class = "floatingBox">
+            <img class = "moviePoster" src={{posters[i]}} alt="Movie Poster" width = "250px">
+            <p class = "movieTitle">{{titles[i]}}</p>
+            <p>Release Date: {{years[i]}}
+              <br>Popularity: {{popularity[i]}}
+              <br>Rating: {{ratings[i]}}
+            </p>
+            <p>{{plots[i]}}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+</html>
