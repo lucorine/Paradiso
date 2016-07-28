@@ -14,6 +14,7 @@ jinja_environment = jinja2.Environment(
    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         mainPageTemplate = jinja_env.get_template('paradisomain.html')
@@ -293,6 +294,5 @@ app = webapp2.WSGIApplication([
     ('/romance', RomanceHandler),
     ('/scifi', ScifiHandler),
     ('/thriller', ThrillerHandler),
-    ('/related', RelatedHandler),
-    ('/signin', SignHandler)
+    ('/related', RelatedHandler)
 ], debug=True)
