@@ -8,6 +8,7 @@ from google.appengine.api import urlfetch
 import urllib2
 from random import randint
 from datatype import Movie
+import logging
 
 jinja_environment = jinja2.Environment(
    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -26,11 +27,14 @@ class AboutHandler(webapp2.RequestHandler):
 class RelatedHandler(webapp2.RequestHandler):
     def get(self):
         similarPageTemplate = jinja_env.get_template('RelatedMovies.html')
-        self.response.out.write(similarPageTemplate.render())
 
         user_query = self.request.get('user_query')
+        user_query = user_query.replace(" ", "%20")
+
         if len(user_query) > 0:
             self.give_results(user_query)
+        else:
+            self.response.out.write(similarPageTemplate.render())
 
     def give_results(self, user_query):
 
@@ -52,6 +56,11 @@ class RelatedHandler(webapp2.RequestHandler):
         plots = []
         ratings = []
         popularity = []
+        posters = []
+
+        userq = user_query.replace("%20", " ")
+        userq = userq.upper()
+        image_url = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2'
 
         for i in range(0,5):
             titles.append(similar_movies['results'][i]['title'])
@@ -59,13 +68,16 @@ class RelatedHandler(webapp2.RequestHandler):
             plots.append(similar_movies['results'][i]['overview'])
             ratings.append(similar_movies['results'][i]['vote_average'])
             popularity.append(similar_movies['results'][i]['popularity'])
+            posters.append(image_url + similar_movies['results'][i]['poster_path'])
 
         variables = {
         'titles': titles,
         'years': years,
         'popularity': popularity,
         'ratings': ratings,
-        'plots': plots
+        'plots': plots,
+        'original_movie' : userq,
+        'poster' : posters
         }
         similarResultsTemplate = jinja_env.get_template('SimilarResults.html')
         self.response.write(similarResultsTemplate.render(variables))
