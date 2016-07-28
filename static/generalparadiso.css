@@ -101,3 +101,33 @@ div.floatingBox {
 .homebutton {
   color: white;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    font-weight: bolder;
+    font-size: 130%;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: rgba(255, 255, 255, 0.5);;
+    color: black;
+}
+
+#paradisohome {
+  font-family: 'Fjalla One', sans-serif;
+}
